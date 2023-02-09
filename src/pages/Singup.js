@@ -6,6 +6,10 @@ const Singup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [newsletter, setNewsletter] = useState("off");
+  const [res, setRes] = useState({});
+  console.log(res);
+
   const fetchData = async () => {
     const response = await axios.post(
       "https://lereacteur-vinted-api.herokuapp.com/user/signup",
@@ -13,17 +17,20 @@ const Singup = () => {
         username: username,
         email: email,
         password: password,
+        newsletter: newsletter,
       }
     );
-    console.log(response);
+
+    setRes(response);
     setIsLoading(false);
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [username, email, password, newsletter, res]);
+
   return !isLoading ? (
-    <span>En cours de chargement...</span>
+    <span>en cour de telechargement...</span>
   ) : (
     <div>
       <form
@@ -55,7 +62,13 @@ const Singup = () => {
           }}
         ></input>
         <div className="checbox">
-          <input className="check" type="checkbox"></input>
+          <input
+            className="check"
+            type="checkbox"
+            onChange={(event) => {
+              setNewsletter(event.target.value);
+            }}
+          ></input>
           <label>S'inscrire à notre newsletter</label>
         </div>
         <p className="condition">
