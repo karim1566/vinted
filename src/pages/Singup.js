@@ -1,22 +1,28 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const [isLoading, setIsLoading] = useState(true);
-const [auth, setAuth] = useState([]);
-
-const fetchData = async () => {
-  const response = await axios.post(`http://localhost:3000/signup`);
-
-  setAuth(response.data);
-  setIsLoading(false);
-};
-
-useEffect(() => {
-  fetchData();
-}, []);
-
 const Singup = () => {
-  return isLoading ? (
+  const [isLoading, setIsLoading] = useState(true);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const fetchData = async () => {
+    const response = await axios.post(
+      "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+      {
+        username: username,
+        email: email,
+        password: password,
+      }
+    );
+    console.log(response);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  return !isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
     <div>
@@ -27,9 +33,27 @@ const Singup = () => {
         }}
       >
         <h1>S'inscrire</h1>
-        <input type="text" placeholder="Nom d'utilisateur"></input>
-        <input type="email" placeholder="Email"></input>
-        <input type="password" placeholder="Mot de passe"></input>
+        <input
+          type="text"
+          placeholder="Nom d'utilisateur"
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
+        ></input>
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
+        ></input>
+        <input
+          type="password"
+          placeholder="Mot de passe"
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        ></input>
         <div className="checbox">
           <input className="check" type="checkbox"></input>
           <label>S'inscrire à notre newsletter</label>
