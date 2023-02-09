@@ -1,38 +1,123 @@
-.App {
-  text-align: center;
+.container {
+  width: 1240px;
+  margin: 0 auto;
 }
+/* -----------------------------------------------------
+--------------------------------------------------------
+HEADER */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+header input {
+  width: 690px;
+  height: 40px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  border: none;
+}
+header button {
+  font-size: 12px;
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #017480;
+  color: #017480;
+}
+.vendsA {
+  background-color: #017480;
   color: white;
 }
+/* -------------------------------------------------------
+----------------------------------------------------------
+MAIN */
 
-.App-link {
-  color: #61dafb;
+.homei {
+  margin-top: 20px;
+  padding-top: 10px;
+  width: 100%;
+  height: 475px;
+  background-image: url("./assets/img/home.jpg");
+  background-size: cover;
+  background-position: right;
 }
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+}
+.userimage {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.articles {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.articleimg {
+  width: 235px;
+  height: 350px;
+}
+.backhome {
+  margin-left: 100px;
+  margin-top: 90px;
+  width: 385px;
+  height: 200px;
+  border-radius: 5px;
+  background-color: white;
+}
+/* ----------------------------------
+----------------------------------------
+OFFERS */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rayon {
+  display: flex;
+}
+.rayonp {
+  display: flex;
+  flex-direction: column;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input {
+  width: 275px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #fcced2;
+  margin-bottom: 20px;
+}
+.condition {
+  color: #999999;
+  font-size: 12px;
+  width: 230px;
+}
+form button {
+  background-color: #2eb0ba;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  width: 275px;
+  height: 40px;
+}
+label {
+  color: #999999;
+}
+.checbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chek {
+  width: 100px;
+  height: 100px;
 }
