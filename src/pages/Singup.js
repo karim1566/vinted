@@ -1,42 +1,36 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Singup = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [newsletter, setNewsletter] = useState("off");
-  const [res, setRes] = useState({});
-  console.log(res);
+  // const [newsletter, setNewsletter] = useState("off");
 
   const fetchData = async () => {
-    const response = await axios.post(
-      "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-      {
-        username: username,
-        email: email,
-        password: password,
-        newsletter: newsletter,
-      }
-    );
-
-    setRes(response);
-    setIsLoading(false);
+    try {
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        {
+          username: username,
+          email: email,
+          password: password,
+          newsletter: true,
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, [username, email, password, newsletter, res]);
-
-  return !isLoading ? (
-    <span>en cour de telechargement...</span>
-  ) : (
+  // salut
+  return (
     <div>
       <form
         className="form"
         onChange={(event) => {
           event.preventDefault();
+          fetchData();
         }}
       >
         <h1>S'inscrire</h1>
@@ -65,9 +59,9 @@ const Singup = () => {
           <input
             className="check"
             type="checkbox"
-            onChange={(event) => {
-              setNewsletter(event.target.value);
-            }}
+            // onChange={(event) => {
+            //   setNewsletter(event.target.value);
+            // }}
           ></input>
           <label>S'inscrire à notre newsletter</label>
         </div>
