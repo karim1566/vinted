@@ -1,11 +1,15 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Singup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [newsletter, setNewsletter] = useState("off");
+
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -19,16 +23,20 @@ const Singup = () => {
         }
       );
       console.log(response);
+      if (response.data.token) {
+        Cookies.set("token", response.data.token, { expires: 1 });
+      }
+      navigate("/");
     } catch (error) {
       console.log(error.response.data.message);
     }
   };
-  // salut
+  // Cookies.get("token");
   return (
     <div>
       <form
         className="form"
-        onChange={(event) => {
+        onSubmit={(event) => {
           event.preventDefault();
           fetchData();
         }}

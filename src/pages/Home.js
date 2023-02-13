@@ -1,10 +1,34 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const Home = ({ data }) => {
-  return (
+const Home = ({ search }) => {
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}`
+      );
+
+      setData(response.data);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [search]);
+
+  return isLoading ? (
+    <span>en cour de telechargement</span>
+  ) : (
     <div>
       <div className="homei">
-        <div className="backhome"></div>
+        <div className="backhome">
+          <h1 className="pret">Prêts à faire du tri dans vos placards ?</h1>
+          <Link to="/signup">
+            <button className="vendre">Commencez a vendre</button>
+          </Link>
+        </div>
       </div>
       <div className="articles container">
         {data.offers.map((item) => {
@@ -28,6 +52,7 @@ const Home = ({ data }) => {
                   alt=""
                 ></img>
               </Link>
+
               <div></div>
             </div>
           );
