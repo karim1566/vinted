@@ -23,19 +23,20 @@ const Publish = () => {
           event.preventDefault();
           try {
             const formData = new FormData();
+
             formData.append("picture", picture);
             formData.append("title", title);
             formData.append("description", description);
             formData.append("brand", marque);
             formData.append("size", taille);
-            formData.append("couleur", couleur);
+            formData.append("color", couleur);
             formData.append("condition", Etat);
             formData.append("city", lieu);
             formData.append("price", price);
             // formData.append("", change);
 
             const response = await axios.post(
-              "hhttps://lereacteur-vinted-api.herokuapp.com/offer/publish",
+              "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
               formData,
               {
                 headers: {
@@ -155,7 +156,7 @@ const Publish = () => {
         </div>
         <button type="submit">Ajoutez</button>
       </form>
-      {imageToDisplay && <img src={imageToDisplay.secure_url} alt="" />}
+      {imageToDisplay && <img src={imageToDisplay.secure_url} alt="" />}`
     </div>
   );
 };
