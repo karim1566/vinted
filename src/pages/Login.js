@@ -1,15 +1,15 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
-const Login = ({ setConnect, Cookies }) => {
+const Login = ({ handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
-  const fetchData = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
     try {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/login",
@@ -18,26 +18,19 @@ const Login = ({ setConnect, Cookies }) => {
           password: password,
         }
       );
-      if (response.data.token) {
-        Cookies.set("token", response.data.token, { expires: 1 });
-      }
 
-      Cookies && setConnect(true);
-      navigate("/");
+      if (response.data.token) {
+        handleToken(response.data.token);
+        navigate("/");
+      }
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     }
   };
 
   return (
     <div>
-      <form
-        className="form"
-        onSubmit={(event) => {
-          event.preventDefault();
-          fetchData();
-        }}
-      >
+      <form className="form" onSubmit={handleLogin}>
         <h1>Se connecter</h1>
         <input
           type="email"

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const Publish = () => {
+const Publish = ({ token }) => {
   const [picture, setPicture] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -40,7 +40,7 @@ const Publish = () => {
               formData,
               {
                 headers: {
-                  authorization: "Bearer Voici mon token",
+                  authorization: `Bearer ${token}`,
                   "Content-Type": "multipart/form-data",
                 },
               }
