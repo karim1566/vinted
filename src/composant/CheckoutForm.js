@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ token }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
 
@@ -18,24 +18,27 @@ const CheckoutForm = () => {
     try {
       setIsLoading(true);
       const cardElement = elements.getElement(CardElement);
+      if (token) {
+        const stripeResponse = await stripe.createToken(cardElement, {
+          name: id,
+        });
+        const stripeToken = stripeResponse.token.id;
 
-      const stripeResponse = await stripe.createToken(cardElement, {
-        name: id,
-      });
-      const stripeToken = stripeResponse.token.id;
-
-      const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/payment",
-        {
-          token: stripeToken,
-          title: title,
-          amount: price,
+        const response = await axios.post(
+          "https://lereacteur-vinted-api.herokuapp.com/payment",
+          {
+            token: stripeToken,
+            title: title,
+            amount: price,
+          }
+        );
+        console.log(response.data);
+        if (response.data.status === "succeeded") {
+          setIsLoading(false);
+          setCompleted(true);
         }
-      );
-      console.log(response);
-      if (response.data === "succeeded") {
-        setIsLoading(false);
-        setCompleted(true);
+      } else {
+        alert("vous devez etre connecter");
       }
     } catch (error) {
       console.log(error);
@@ -79,7 +82,7 @@ const CheckoutForm = () => {
       </p>
       <CardElement />
       {completed ? (
-        <p>payement effectuer</p>
+        <p>payement effectuer et tes marrons dans l'oeuf</p>
       ) : (
         <button
           disabled={isLoading}
