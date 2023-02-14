@@ -9,7 +9,7 @@ const CheckoutForm = ({ token }) => {
 
   const location = useLocation();
   const { title, price, id } = location.state;
-
+  //
   const elements = useElements();
   const stripe = useStripe();
 
