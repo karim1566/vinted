@@ -2,10 +2,17 @@
   width: 1240px;
   margin: 0 auto;
 }
+
+body {
+  background-color: #dfe2e3;
+}
 /* -----------------------------------------------------
 --------------------------------------------------------
 HEADER */
 
+.margin {
+  margin-right: 10px;
+}
 header {
   display: flex;
   justify-content: space-between;
@@ -30,6 +37,12 @@ header button {
   background-color: #017480;
   color: white;
 }
+.sedec {
+  background-color: #c2175b;
+  border: none;
+  color: white;
+}
+
 /* -------------------------------------------------------
 ----------------------------------------------------------
 MAIN */
@@ -43,7 +56,7 @@ MAIN */
   background-size: cover;
   background-position: right;
 }
-.user {
+.lot {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -70,19 +83,75 @@ MAIN */
   height: 200px;
   border-radius: 5px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 30px;
+}
+.self {
+  background-color: #2eb0ba;
+  height: 40px;
+  width: 200px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+.pret {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 42px;
 }
 /* ----------------------------------
 ----------------------------------------
 OFFERS */
 
 .rayon {
+  margin-top: 20px;
   display: flex;
+  justify-content: space-around;
+  background-color: lightgray;
 }
 .rayonp {
   display: flex;
   flex-direction: column;
+  background-color: white;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width: 300px;
+  padding: 30px;
+  border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
-.form {
+.offre {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.fiche {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+h4 {
+  border-top: 1px solid lightgrey;
+  margin-top: 40px;
+  padding-top: 30px;
+}
+.buy {
+  background-color: #2eb0ba;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+/*------------------------------------------------
+-----------------------------------------------------
+FORMULAIRE */
+
+.forme {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -117,7 +186,54 @@ label {
   justify-content: center;
   align-items: center;
 }
-.chek {
-  width: 100px;
-  height: 100px;
+
+/*/-------------------------------------------------------
+
+
+----------------------
+Publish*/
+.contpublish {
+  margin: 20px auto;
+  background-color: white;
+  padding: 20px;
+}
+.add {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.ajoutez {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 70px;
+}
+
+/* ----------------------------------------------
+----------------------------------------------------
+
+PAYMENT*/
+h3 {
+  color: lightgrey;
+  margin: 10px;
+}
+.paye {
+  background-color: white;
+  width: 600px;
+
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 auto;
+  padding: 20px;
+}
+.resum {
+  display: flex;
+  justify-content: space-between;
+}
+.border {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+}
+span {
+  font-weight: bold;
 }

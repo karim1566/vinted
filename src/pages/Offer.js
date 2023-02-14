@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -6,6 +6,8 @@ const Offer = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [offer, setOffer] = useState({});
+
+  const navigate = useNavigate();
 
   console.log(offer);
   useEffect(() => {
@@ -23,7 +25,11 @@ const Offer = () => {
   ) : (
     <div className="rayon">
       <div className="offre">
-        <img src={offer.product_image.secure_url} alt=""></img>
+        <img
+          style={{ overflow: "auto", height: "640px" }}
+          src={offer.product_image.secure_url}
+          alt=""
+        ></img>
       </div>
 
       <div>
@@ -40,6 +46,28 @@ const Offer = () => {
                 </div>
               );
             })}
+            <h4>{offer.product_name}</h4>
+            <p style={{ color: "gray", marginBottom: "10px" }}>
+              {offer.product_description}
+            </p>
+            <h4 style={{ border: "none", marginTop: "0px" }}>
+              {offer.owner.account.username}
+            </h4>
+
+            <button
+              className="buy"
+              onClick={() => {
+                navigate("/payment", {
+                  state: {
+                    title: offer.product_name,
+                    price: offer.product_price,
+                    id: offer._id,
+                  },
+                });
+              }}
+            >
+              Acheter
+            </button>
           </div>
         </div>
       </div>

@@ -21,7 +21,8 @@ const Login = ({ handleToken }) => {
 
       if (response.data.token) {
         handleToken(response.data.token);
-        navigate("/");
+
+        navigate("/publish");
       }
     } catch (error) {
       console.log(error.response.data);
@@ -30,7 +31,7 @@ const Login = ({ handleToken }) => {
 
   return (
     <div>
-      <form className="form" onSubmit={handleLogin}>
+      <form className="forme" onSubmit={handleLogin}>
         <h1>Se connecter</h1>
         <input
           type="email"
